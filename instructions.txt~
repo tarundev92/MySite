@@ -1,0 +1,2 @@
+MySql password should be empty in settings.py  (Example:'PASSWORD': '')
+

@@ -1,0 +1,4 @@
+1.Do 'pip freeze' in your virtual enironment and copy everything and paste it in 'requirements.txt' file and thats how CircleCi knows which all softwares required to run.
+
+2.MySql password should be empty in settings.py  (Example:'PASSWORD': '')
+
