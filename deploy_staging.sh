@@ -1,4 +1,3 @@
-sudo bash
 pwd
 ls
 cd /var
