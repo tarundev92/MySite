@@ -6,4 +6,4 @@ deployment:
   staging:
     branch: master
     commands:
-      - ./deploy_staging.sh
+      - scp -v -r requirements.txt 188.166.187.156:/home/dev/temp
