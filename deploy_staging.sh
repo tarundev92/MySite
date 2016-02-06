@@ -1,6 +1,9 @@
 pwd
-ls
-scp -v -r requirements.txt dev@188.166.187.156:/home/dev/temp
-cd ..
-pwd
-ls
+git init
+git add -all
+git commit -m "1st"
+git remote add origin https://github.com/tarundev92/Deploy-MySite.git
+git pull
+git push -u origin master
+tarundev92
+Dev8904644994
