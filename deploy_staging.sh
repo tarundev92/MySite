@@ -1,6 +1,6 @@
 pwd
 ls
-dir_name=basename "$PWD"
+dir_name = basename "$PWD"
 rm -rfv ./.git
 rm -rfv ./venv
 find . -name \*.pyc -type f -delete
