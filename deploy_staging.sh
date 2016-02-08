@@ -2,6 +2,7 @@ pwd
 ls
 dir_name=basename "$PWD"
 ssh root@188.166.187.156
+pwd
 [ ! -d /home/dev/temp/$dir_name  ] && mkdir /home/dev/temp/$dir_name || cd /home/dev/temp/$dir_name && rm -rfv ./*
 exit
 rm -rfv ./.git
