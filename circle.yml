@@ -7,3 +7,7 @@ deployment:
     branch: master
     commands:
       - ./deploy_staging.sh
+  Features:
+    branch: poll
+    commands:
+      - ./deploy_feature.sh
