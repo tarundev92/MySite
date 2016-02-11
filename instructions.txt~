@@ -1,2 +1,26 @@
-MySql password should be empty in settings.py  (Example:'PASSWORD': '')
+1. CREATE GIT REPOSITORY
+	Create or copy the project to git repository
 
+2. CREATE CIRCLECI ACCOUNT
+	Create CircleCi account and link the created git repository to CircleCi
+
+3. CONFIGURE CIRCLECI
+	3.1 CONFIGURING "Circle.yml"
+		3.1.1 DEPLOYMENT
+			Update this file in "branch:" specify the git branch name and in "commands:" specify which script should be called.
+
+	3.2 REQUIRED SOFTWARES
+		Do 'pip freeze' in your virtual enironment(local machine) and copy everything and paste it in 'requirements.txt' file and thats how CircleCi knows which all softwares required to run.
+
+	3.3 DATABASE CONFIGURATION
+		MySql password by default is blank, so password section should be empty in settings.py (Example:'PASSWORD': '')
+
+4. AUTHENTICATION
+	4.1 CREATION OF SSH KEY
+		Generate SSH key using command. This creates private key and public key
+	
+	4.2 CONFIGURING SSH KEY
+		Create a root login in your server(should have root access). Assign the generated SSH public key to this root login. Assign private key to CircleCi.	
+	
+	4.3 AUTHENTICATING CIRCLECI
+		Go to project settings in CircleCi and go to "SSH Permissions" and Copy the generated privte key and paste it in the box provided. Leave the host name blank.
