@@ -10,7 +10,8 @@ class PollsTest(LiveServerTestCase):
         self.browser.implicitly_wait(3)
 
     def tearDown(self):
-        self.browser.quit()
+        A=10
+        #self.browser.quit()
 
     def test_can_create_new_poll_via_admin_site(self):
         # Gertrude opens her web browser, and goes to the admin page

@@ -6,4 +6,8 @@ deployment:
   staging:
     branch: master
     commands:
-      - ./deploy_staging.sh
+      - ./deploy_master.sh
+  Features:
+    branch: poll
+    commands:
+      - ./deploy_feature.sh
