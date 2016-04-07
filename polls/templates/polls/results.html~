@@ -7,5 +7,5 @@
 </ul>
 
 <a href="{% url 'polls:detail' question.id %}">Vote again?</a> OR
-<a href="{% url 'polls:index' %}">Go Home</a> 
+<a href="{% url 'polls:index' %}">See all Polls</a> 
 
