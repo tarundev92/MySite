@@ -13,7 +13,7 @@ ssh root@188.166.187.156 'bash -s' < script1.sh /home/dev/temp/feature
 source /opt/myenv/bin/activate
 export PYTHONPATH=/home/tarun/projects/MysiteGitRepo/MySite
 export DJANGO_SETTINGS_MODULE=mysite.settings
-export HOST_NAME=http://127.0.01/
+export HOST_NAME=http://127.0.0.1/
 /home/tarun/projects/MysiteGitRepo/myenv/bin/gunicorn -c /home/tarun/projects/MysiteGitRepo/MySite/scripts/gunicorn.py mysite.wsgi --reload
 
 /home/tarun/projects/MysiteGitRepo/myenv/bin/gunicorn  mysite.wsgi:application -b 127.0.0.1:8000
@@ -29,3 +29,28 @@ nohup /var/www/appzcentre.com/djenv/bin/gunicorn -c /var/www/appzcentre.com/MySi
 
 python manage.py runserver appzcentre.com:8000
 
+
+ $.ajax({ // create an AJAX call...
+                        data: $(this).serialize(), // get the form data
+                        type: $(this).attr('method'), // GET or POST
+                        url: $(this).attr('action'), // the file to call
+                        success: function(response) { // on success..
+                        result = JSON.parse(response);
+                        $('#detail').hide();
+                        $('#result').show();
+                        $('#result').html(result);
+                         // update the DIV
+                         },
+                        error: function(e, x, r) { // on error..
+                        //$('#error_div).html(e); // update the DIV
+                        }
+                    });
+
+
+ e.preventDefault();
+                    url=$(this).attr('action')
+                    $.post(url, function(data){
+                        $('#detail').hide();
+                        $('#result').show();
+                        $('#result').html(data);
+                    });

@@ -1,9 +1,59 @@
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="polls/{{question.id}}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+{% include 'partials/header.html' %}
+<div class="container">
+    <div class="page-header">
+        <h1>Poll List</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-5">
+            <a href="/admin/" id="newPoll" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> New Poll</a>
+        </div>
+        <div class="col-xs-7">
+            <input type="text" id="query"  class="form-control" placeholder="Search for a poll">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        {% if latest_question_list %}
+        <ul class="search-polls">
+            {% for question in latest_question_list %}
+            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+       <ul >
+		<li>No polls available.</li>
+	</ul>
+        {% endif %}
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+                    var base_url = 'http://'+window.location.hostname;
+
+
+
+                   $("#query").keyup(function(event){
+
+                    //alert( "Handler for .change() called." );
+
+                    var value = $.trim($(this).val()).toLowerCase();
+
+	                $(".search-polls > li").each(function() {
+	                    if ($(this).text().toLowerCase().search(value) > -1) {
+	                        $(this).show();
+	                    }
+	                    else {
+	                        $(this).hide();
+	                    }
+	        });
+
+                });
+         </script>

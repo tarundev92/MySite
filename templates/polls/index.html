@@ -1,0 +1,35 @@
+{% include 'partials/header.html' %}
+<div class="container">
+    <div class="page-header">
+        <h1>Poll List</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-5">
+            <a href="#/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> New Poll</a>
+        </div>
+        <div class="col-xs-7">
+            <input type="text" class="form-control" ng-model="query" placeholder="Search for a poll">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        {% if latest_question_list %}
+        <ul>
+            {% for question in latest_question_list %}
+            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+       <ul >
+		<li>No polls available. </li>
+	</ul>
+        {% endif %}
+    </div>
+</div>

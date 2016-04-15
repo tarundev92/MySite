@@ -10,10 +10,10 @@
 
     {% if error_message %}<p style="color: red;"><strong>{{ error_message }}</strong></p>{% endif %}
 
-    <div id="detail">
+    <div ng-hide="poll.userVoted">
         <p class="lead">Please select one of the following options:</p>
 
-        <form id="form_vote" action="{% url 'polls:vote' question.id %}" method="POST">
+        <form action="{% url 'polls:vote' question.id %}" method="post">
             {% csrf_token %}
 
             {% for choice in question.choice_set.all %}
@@ -37,11 +37,6 @@
                     <input class="btn btn-primary pull-right" type="submit" value="Vote &raquo;"/>
                 </div>
             </div>
-
         </form>
     </div>
-
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-

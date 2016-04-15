@@ -11,7 +11,7 @@ class PollsTest(LiveServerTestCase):
 
     def tearDown(self):
         A=10
-        #self.browser.quit()
+        self.browser.quit()
 
     def test_can_create_new_poll_via_admin_site(self):
         # Gertrude opens her web browser, and goes to the admin page
@@ -47,7 +47,7 @@ class PollsTest(LiveServerTestCase):
         self.assertIn('0 questions', body.text)
 
         # She sees a link to 'add' a new poll, so she clicks it
-        new_poll_link = self.browser.find_element_by_link_text('Add question')
+        new_poll_link = self.browser.find_element_by_xpath("//a[@class='addlink']")
         new_poll_link.click()
         
         # She sees some input fields for "Question" and "Date published"

@@ -10,13 +10,13 @@
 
 
     <div >
-	<table class="result-table" style="margin: 20px 0;	width: 100%; border-collapse: collapse;">
+	<table class="result-table">
        {% for choice in question.choice_set.all %}
 		<tr >
-			<td style="width: 25%;	max-width: 300px;	text-align: right;" >{{ choice.choice_text }}</td>
-			<td style="padding: 8px;">
+			<td>{{ choice.choice_text }}</td>
+			<td>
 				<table style="background-color: lightblue; width: {% widthratio choice.votes totalVotes 100 %}%; text-align: right">
-					<tr ><td style="padding: 8px;">{{choice.votes}}</td></tr>
+					<tr><td>{{choice.votes}}</td></tr>
 				</table>
 			</td>
 		</tr>
@@ -32,7 +32,7 @@
 
 	<p><hr></p>
 
-	<p><a href="{% url 'polls:index' %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-arrow-left"></span> Back to Poll List</a></p>
+	<p><a href="{% url 'polls:detail' question.id %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-arrow-left"></span> Back to Poll List</a></p>
 </div>
 
 

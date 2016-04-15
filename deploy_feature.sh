@@ -29,3 +29,62 @@ nohup /var/www/appzcentre.com/djenv/bin/gunicorn -c /var/www/appzcentre.com/MySi
 
 python manage.py runserver appzcentre.com:8000
 
+
+ $.ajax({ // create an AJAX call...
+                        data: $(this).serialize(), // get the form data
+                        type: $(this).attr('method'), // GET or POST
+                        url: $(this).attr('action'), // the file to call
+                        success: function(response) { // on success..
+                        result = JSON.parse(response);
+                        $('#detail').hide();
+                        $('#result').show();
+                        $('#result').html(result);
+                         // update the DIV
+                         },
+                        error: function(e, x, r) { // on error..
+                        //$('#error_div).html(e); // update the DIV
+                        }
+                    });
+
+
+ e.preventDefault();
+                    url=$(this).attr('action')
+                    $.post(url, function(data){
+                        $('#detail').hide();
+                        $('#result').show();
+                        $('#result').html(data);
+                    });
+
+<script type="text/javascript">
+
+                    var base_url = 'http://'+window.location.hostname;
+                    //$('#result').hide();
+
+
+                   $(document).ready(function(e) {
+
+                    $('#form_vote').submit(function() { // catch the form's submit event
+                     $.ajax({ // create an AJAX call...
+                        data: $(this).serialize(), // get the form data
+                        type: $(this).attr('method'), // GET or POST
+                        url: $(this).attr('action'), // the file to call
+                        success: function(data) { // on success..
+                        //result = JSON.parse(data);
+                        var html = $(data).filter('#result').html();
+                        //$('#detail').hide();
+
+                        //$('#result').show();
+
+                        $('#result').html(html);
+                         // update the DIV
+                         },
+                        error: function(e, x, r) { // on error..
+                        //$('#error_div).html(e); // update the DIV
+                        }
+                    });
+                    e.preventDefault();
+                    return false;
+    });
+
+});
+         </script>

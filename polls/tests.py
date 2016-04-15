@@ -62,7 +62,7 @@ class QuestionViewTests(TestCase):
         """
         response = self.client.get(reverse('polls:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "No polls are available.")
+        self.assertContains(response, "No polls available.")
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
    def test_index_view_with_a_past_question_and_a_choice(self):
@@ -71,9 +71,9 @@ class QuestionViewTests(TestCase):
         index page.
         """
         past_question=create_question(question_text="Past question.", days=-30)
-	create_single_choice(past_question, choice_text='Past Choice')
+        create_single_choice(past_question, choice_text='Past Choice')
         response = self.client.get(reverse('polls:index'))
-        self.assertQuerysetEqual(
+        self.assertQuerysetEqual(	
             response.context['latest_question_list'],
             ['<Question: Past question.>']
         )
@@ -86,7 +86,7 @@ class QuestionViewTests(TestCase):
         future_question=create_question(question_text="Future question.", days=30)
         create_single_choice(future_question, choice_text='Future Choice')        
         response = self.client.get(reverse('polls:index'))
-        self.assertContains(response, "No polls are available.", status_code=200)
+        self.assertContains(response, "No polls available.", status_code=200)
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
    def test_index_view_with_future_question_with_choice_and_past_question_with_choice(self):
@@ -118,7 +118,7 @@ class QuestionViewTests(TestCase):
        """
        create_question(question_text="No choice question.", days=0)
        response = self.client.get(reverse('polls:index'))
-       self.assertContains(response, "No polls are available.", status_code=200)
+       self.assertContains(response, "No polls available.", status_code=200)
         
 class QuestionIndexDetailTests(TestCase):
 
