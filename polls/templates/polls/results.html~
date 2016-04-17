@@ -1,11 +1,40 @@
-<h1>{{ question.question_text }}</h1>
+{% include 'partials/header.html' %}
+<div class="container">
+    <div class="page-header">
+        <h1>View Poll</h1>
+    </div>
 
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
+    <div class="well well-lg">
+        <strong>Question</strong><br>{{ question.question_text }}
+    </div>
 
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a> OR
-<a href="{% url 'polls:index' %}">See all Polls</a> 
 
+    <div >
+	<table class="result-table" style="margin: 20px 0;	width: 100%; border-collapse: collapse;">
+       {% for choice in question.choice_set.all %}
+		<tr >
+			<td style="width: 25%;	max-width: 300px;	text-align: right;" >{{ choice.choice_text }}</td>
+			<td style="padding: 8px;">
+				<table style="background-color: lightblue; width: {% widthratio choice.votes totalVotes 100 %}%; text-align: right">
+					<tr ><td style="padding: 8px;">{{choice.votes}}</td></tr>
+				</table>
+			</td>
+		</tr>
+        {% endfor %}
+	</table>
+
+	<p>
+		<em>
+			{{totalVotes}} votes counted so far.
+			<span >You voted for <strong>{{userChoice}}</strong>.</span>
+		</em>
+	</p>
+
+	<p><hr></p>
+
+	<p><a href="{% url 'polls:index' %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-arrow-left"></span> Back to Poll List</a></p>
+</div>
+
+
+</div>
+<p>&nbsp;</p>

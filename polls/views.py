@@ -25,9 +25,10 @@ def detail(request, question_id):
 
 
 def results(request, question_id,choice):
-    question = get_object_or_404(Question.objects.filter(pub_date__lte=timezone.now(), choice__isnull = False).distinct(), pk=question_id)
+    question = get_object_or_404(Question.objects.filter(pub_date__lte=timezone.now(), choice__isnull = False).distinct().order_by('votes'), pk=question_id)
     total = Choice.objects.filter(question=question_id).aggregate(total = Sum('votes'))
     total = total.get('total')
+    choice = question.choice_set.get(pk=choice)
     print "Total votes:" , total
     return render(request, 'polls/results.html', {'question': question,'totalVotes':total,'userChoice':choice})
 
@@ -60,7 +61,7 @@ def vote(request, question_id):
             # html = render(request,'polls/result.html', {'total':total,'userChoice':selected_choice.choice_text})
             # return render_to_response('polls/detail.html', {'total':total,'userChoice':selected_choice.choice_text},context_instance=RequestContext(request))
             # return HttpResponse(html)
-            return HttpResponseRedirect(reverse('polls:results', args=(question.id,selected_choice.choice_text,)))
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,request.POST['choice'],)))
 
 
 

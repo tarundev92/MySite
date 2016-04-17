@@ -2,12 +2,12 @@ deployment:
   production:
     branch: production
     commands:
-      - ./deploy_master.sh
+      - ./deploy_prod.sh
   staging:
     branch: master
     commands:
-      - ./deploy_master.sh
+      - ./ci_scripts/deploy_master.sh
   Features:
     branch: poll
     commands:
-      - ./deploy_master.sh
+      - ./ci_scripts/deploy_poll.sh

@@ -12,7 +12,7 @@ ssh root@188.166.187.156 'bash -s' < script1.sh /home/dev/temp/feature
 
 source /opt/myenv/bin/activate
 export PYTHONPATH=/home/tarun/projects/MysiteGitRepo/MySite
-export DJANGO_SETTINGS_MODULE=mysite.settings
+export DJANGO_SETTINGS_MODULE=mysite.settings2
 export HOST_NAME=http://127.0.0.1/
 /home/tarun/projects/MysiteGitRepo/myenv/bin/gunicorn -c /home/tarun/projects/MysiteGitRepo/MySite/scripts/gunicorn.py mysite.wsgi --reload
 
@@ -25,6 +25,24 @@ export HOST_NAME=http://45.55.185.30/
 /var/www/appzcentre.com/djenv/bin/gunicorn -c /var/www/appzcentre.com/MySite/scripts/gunicorn.py mysite.wsgi --reload
 
 nohup /var/www/appzcentre.com/djenv/bin/gunicorn -c /var/www/appzcentre.com/MySite/scripts/gunicorn.py mysite.wsgi --reload  > /dev/null 2>&1&
+
+gunicorn --bind appzcentre.com:8001 mysite.wsgi:application
+
+source /var/www/djenv/bin/activate
+export PYTHONPATH=/var/www/MySite
+export DJANGO_SETTINGS_MODULE=mysite.settings
+export HOST_NAME=http://128.199.185.127/
+/var/www/djenv/bin/gunicorn -c /var/www/MySite/scripts/gunicorn.py mysite.wsgi --reload
+
+nohup /var/www/djenv/bin/gunicorn -c /var/www/MySite/scripts/gunicorn.py mysite.wsgi --reload > /dev/null 2>&1&
+
+
+
+source /var/www/djenv/bin/activate
+export PYTHONPATH=/var/www/old/MySite
+export DJANGO_SETTINGS_MODULE=mysite.settings
+export HOST_NAME=http://128.199.185.127/
+nohup /var/www/djenv/bin/gunicorn -c /var/www/old/MySite/scripts/gunicorn.py mysite.wsgi --reload > /dev/null 2>&1&
 
 
 python manage.py runserver appzcentre.com:8000

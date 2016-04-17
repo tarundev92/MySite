@@ -4,7 +4,7 @@
         <h1>View Poll</h1>
     </div>
 
-    <div class="well well-lg">
+    <div class="well well-lg" style="font-size: 16px">
         <strong>Question</strong><br>{{ question.question_text }}
     </div>
 
@@ -17,7 +17,7 @@
             {% csrf_token %}
 
             {% for choice in question.choice_set.all %}
-            <div class="radio">
+            <div class="radio" style="font-size: 16px">
                 <label>
                     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}"/>
                     {{ choice.choice_text }}
