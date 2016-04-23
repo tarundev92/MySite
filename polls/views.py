@@ -25,12 +25,14 @@ def detail(request, question_id):
 
 
 def results(request, question_id,choice):
-    question = get_object_or_404(Question.objects.filter(pub_date__lte=timezone.now(), choice__isnull = False).distinct().order_by('votes'), pk=question_id)
+    question = get_object_or_404(Question.objects.filter(pub_date__lte=timezone.now(), choice__isnull = False).distinct(), pk=question_id)
+    choices = Choice.objects.filter(question=question_id).order_by('-votes')
+    print question
     total = Choice.objects.filter(question=question_id).aggregate(total = Sum('votes'))
     total = total.get('total')
     choice = question.choice_set.get(pk=choice)
     print "Total votes:" , total
-    return render(request, 'polls/results.html', {'question': question,'totalVotes':total,'userChoice':choice})
+    return render(request, 'polls/results.html', {'question': question,'choices': choices,'totalVotes':total,'userChoice':choice})
 
 
 def vote(request, question_id):
